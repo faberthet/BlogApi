@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 namespace blog.api.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     public class PostsController : Controller
     {
         private readonly BlogDbContext dbContext;
