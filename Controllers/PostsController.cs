@@ -28,7 +28,7 @@ namespace blog.api.Controllers
         [ActionName("GetPostById")]
         public async Task<IActionResult> GetPostById(int id)
         {
-            var post = await dbContext.Posts.SingleOrDefaultAsync(x => x.id==id);
+            var post = await dbContext.Posts.SingleOrDefaultAsync(x => x.Id==id);
             if (post == null)
             {
                 return NotFound();
@@ -44,7 +44,6 @@ namespace blog.api.Controllers
                 Title=addPostRequest.Title,
                 Content=addPostRequest.Content,
                 summary=addPostRequest.summary,
-                UrlHandle=addPostRequest.UrlHandle,
                 Visible=addPostRequest.Visible,
                 Author=addPostRequest.Author,
                 FeaturedImageUrl=addPostRequest.FeaturedImageUrl,
@@ -53,7 +52,7 @@ namespace blog.api.Controllers
             };
             await dbContext.Posts.AddAsync(post);
             await dbContext.SaveChangesAsync();
-            return CreatedAtAction(nameof(GetPostById), new { post.id }, post);
+            return CreatedAtAction(nameof(GetPostById), new { post.Id }, post);
         }
         [HttpPut]
         [Route("{id:int}")]
@@ -65,7 +64,6 @@ namespace blog.api.Controllers
                 post.Title = updatePostRequest.Title;
                 post.Content = updatePostRequest.Content;
                 post.summary = updatePostRequest.summary;
-                post.UrlHandle = updatePostRequest.UrlHandle;
                 post.Visible = updatePostRequest.Visible;
                 post.Author = updatePostRequest.Author;
                 post.FeaturedImageUrl = updatePostRequest.FeaturedImageUrl;

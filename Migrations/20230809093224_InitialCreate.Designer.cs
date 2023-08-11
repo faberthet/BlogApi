@@ -12,7 +12,7 @@ using blog.api.Data;
 namespace blog.api.Migrations
 {
     [DbContext(typeof(BlogDbContext))]
-    [Migration("20230709140127_InitialCreate")]
+    [Migration("20230809093224_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -27,11 +27,11 @@ namespace blog.api.Migrations
 
             modelBuilder.Entity("blog.api.Models.Entities.Post", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Author")
                         .IsRequired()
@@ -55,10 +55,6 @@ namespace blog.api.Migrations
                     b.Property<DateTime>("UpdatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("UrlHandle")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<bool>("Visible")
                         .HasColumnType("bit");
 
@@ -66,7 +62,7 @@ namespace blog.api.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("id");
+                    b.HasKey("Id");
 
                     b.ToTable("Posts");
                 });
