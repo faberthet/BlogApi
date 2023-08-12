@@ -1,4 +1,4 @@
-﻿namespace blog.api.Models
+﻿namespace blog.api.Models.Files
 {
     public class UploadResult
     {
