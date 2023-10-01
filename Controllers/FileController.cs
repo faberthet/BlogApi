@@ -41,17 +41,19 @@ namespace blog.api.Controllers
 
         [HttpPost]
         [Route("ckeditor-image")]
-        public async Task<ActionResult<UploadResult>> UploadImageFromCkEditor(IFormFile file)
+        public async Task<ActionResult<UploadResult>> UploadImageFromCkEditor(IFormFile upload)
         {
             UploadResultForCkEditor uploadResult = new();
            
                 string trustedFileName="to implement";
-                string unTrustedFileName = file.FileName;
+                string unTrustedFileName = upload.FileName;
                 uploadResult.FileName = unTrustedFileName;
 
-                var path = Path.Combine(_env.ContentRootPath, "uploads", unTrustedFileName);
+               // var path = Path.Combine(_env.ContentRootPath, "uploads", unTrustedFileName);
+                var path = Path.Combine("C:\\Users\\faberthet\\Desktop\\dev\\aspNet\\blogfront\\src\\assets\\images\\ckupload\\", unTrustedFileName);
+        
                 await using FileStream fs = new(path, FileMode.Create);
-                await file.CopyToAsync(fs);
+                await upload.CopyToAsync(fs);
 
                 uploadResult.Url = path;
                 uploadResult.StoredFileName = trustedFileName;

@@ -41,8 +41,9 @@ namespace blog.api.Controllers
         {
             var post = new Post()
             {
-                Title=addPostRequest.Title,
-                Content=addPostRequest.Content,
+                Title = addPostRequest.Title,
+                CategoryId = addPostRequest.CategoryId,
+                Content = addPostRequest.Content,
                 summary=addPostRequest.summary,
                 Visible=addPostRequest.Visible,
                 Author=addPostRequest.Author,
@@ -62,6 +63,7 @@ namespace blog.api.Controllers
             var post = await dbContext.Posts.FindAsync(id);
             if (post != null) {
                 post.Title = updatePostRequest.Title;
+                post.CategoryId = updatePostRequest.CategoryId;
                 post.Content = updatePostRequest.Content;
                 post.summary = updatePostRequest.summary;
                 post.Visible = updatePostRequest.Visible;
@@ -88,5 +90,6 @@ namespace blog.api.Controllers
             }
             return NotFound();
         }
+       
     }
 }
